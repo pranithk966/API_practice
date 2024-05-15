@@ -1,10 +1,19 @@
-const jsonServer = require('json-server')
-const server = jsonServer.create()
-const router = jsonServer.router('db.json')
-const middleware = jsonServer.defaults()
-const port = process.env.PORT || 8080
+const express = require('express')
+require('dotenv').config()
 
-server.use(middleware)
-server.use(router)
+const app = express()
 
-server.listen(port)
+app.get('/', (req, res) => {
+  res.json({ mssg: 'heelo' })
+})
+
+app.get('/api', (req, res) => {
+  res.json({
+    name: 'dhoni',
+    age: 26,
+  })
+})
+
+app.listen(process.env.PORT || 8080, (req, res) => {
+  console.log('running server at', process.env.PORT || 8080)
+})
